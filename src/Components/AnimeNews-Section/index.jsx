@@ -1,35 +1,48 @@
-import animeImg from '../../../asset/Rectangle 3.png'
+import animeImg from '../../../asset/3997.jpg'
+import animeImgNew from '../../../asset/3998.jpg'
+import AnimeCard from '../animeCard'
+import VoteSection from '../Vote-Section'
+import { useNavigate } from 'react-router-dom';
 
 const AnimeNews = () => {
-    const dataNewSeason = [{ animeImg: animeImg, animeName: 'Anime'}, { animeImg: animeImg, animeName: 'Anime'}]
+  const navigate = useNavigate()
+  const openBlogArticle = (index) => {
+    navigate(`/AnimeNew/${index}`, { state: { blog: dataNewSeason[index] } });
+};
+    const dataNewSeason = [{ animeImg: animeImgNew, animeName: 'Anime'}, { animeImg: animeImg, animeName: 'Anime'}]
     const dataPopular = [{ animeImg: animeImg, animeName: 'Anime'}, { animeImg: animeImg, animeName: 'Anime'}]
 return (
     <>
-<section className="flex-1 p-10 w-auto">
+<article className="flex-1 w-auto">
+  <section className='new-season-section py-10 px-10'>
+    <h1 className="text-text text-3xl font-bold ">Nueva Temporada</h1> 
+    <div id="card-list-container" className="p-6 w-auto flex gap-8">
+    {dataNewSeason.map((data, index) =>(
+    <AnimeCard 
+      key={index} 
+      animeImg={data.animeImg}
+      animeName={data.animeName} 
+      onClick={() => openBlogArticle(index)}
+      />
+    ))}
+    </div>
+  </section>
+  
 
-  <h1 className="text-text text-2xl font-bold ">Nueva Temporada</h1> 
-  <animeContainer id="card-list-container" className="p-6 w-auto flex gap-8">
-  {dataNewSeason.map((data, index) =>(
-    <card id="card-anime" className="" key={index}>
-      <img src={data.animeImg} alt="" />
-      <h2 className='pt-2 font-semibold'>{data.animeName}</h2>
-    </card>
-  ))}
-  </animeContainer>
-
-  <section className="w-auto">
-  <h1 className="text-text text-2xl font-bold ">Nueva Temporada</h1> 
-
-  <popularContainer id="card-list-container" className="p-6 w-auto flex gap-8">
-  {dataPopular.map((data, index) =>(
-    <card id="card-anime" className="" key={index}>
-      <img src={data.animeImg} alt="" />
-      <h2 className='pt-2 font-semibold'>{data.animeName}</h2>
-    </card>
-  ))}
-  </popularContainer>
+  <section className="most-popular-section w-auto py-10 px-10  bg-gray-100">
+    <h1 className="text-text text-3xl font-bold ">Más Populares</h1> 
+    <div id="card-list-container" className="p-6 w-auto flex gap-8">
+    {dataPopular.map((data, index) =>(
+      <AnimeCard 
+        key={index}
+        animeImg={data.animeImg}
+        animeName={data.animeName}
+      />
+    ))}
+    </div>
 </section>
-</section>
+<VoteSection/>
+</article>
 </>
     )
 }

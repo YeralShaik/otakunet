@@ -14,7 +14,7 @@ const NavBar = () => {
           
             <ul className="navbar-links flex items-center justify-center text-white gap-2 w-auto">
                 <li>
-                    <NavLink className='flex w-auto items-center justify-center gap-1 cursor-pointer hover:bg-white hover:text-primary px-2  py-1 rounded-md focus:bg-white focus:text-primary px-2 py-1 rounded-md'  to="/inicio" >
+                    <NavLink className='flex w-auto items-center justify-center gap-1 cursor-pointer hover:bg-white hover:text-primary px-2  py-1 rounded-md focus:bg-white focus:text-primary px-2 py-1 rounded-md'  to="/" >
                     <IoHomeSharp /> Inicio
                     </NavLink>
                 </li>

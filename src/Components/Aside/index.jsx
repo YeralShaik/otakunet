@@ -2,6 +2,7 @@ import AnimeNews from "../AnimeNews-Section"
 import imgRecomend from "../../../asset/Rectangle 3.png"
 
 
+
 const Aside = () => {
   const dataCategories = [
     {genre: 'Acción'},
@@ -12,6 +13,9 @@ const Aside = () => {
   
   ]
   const dataRecomended = [
+    {img: imgRecomend, title: 'Anime', genre: 'Acción'},
+    {img: imgRecomend, title: 'Anime', genre: 'Acción'},
+    {img: imgRecomend, title: 'Anime', genre: 'Acción'},
     {img: imgRecomend, title: 'Anime', genre: 'Acción'},
    
   
@@ -28,24 +32,26 @@ return (
   </ul>
 ))}
 
-<recomendSection className="w-auto">
+<section className="w-auto">
   <h2 className="text-2xl text-text font-bold mb-4 mt-10 ">Recomendados</h2>
   {dataRecomended.map((data, index) => (
-  <recomendContainer key={index}>
+  <div key={index}>
     <div className=" w-auto flex gap-4"  >
-        <img className="w-20 h-auto" src={data.img} alt="" />
+        <img className="w-20 h-auto mb-6" src={data.img} alt="" />
         <div>
         <p className="text-lg font-semibold">{data.title}</p>
         <p className="bg-primary px-2 text-xs rounded mt-1 text-white opacity-55 ">{data.genre}</p>
         </div>
        
       </div>
-  </recomendContainer>
+  </div>
  
    ))}
-</recomendSection>
+
+</section>
 </aside>
 <AnimeNews/>
+
 </div>
     )
 }
