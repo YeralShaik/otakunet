@@ -1,50 +1,59 @@
-import animeImg from '../../../asset/3997.jpg'
-import animeImgNew from '../../../asset/3998.jpg'
-import AnimeCard from '../animeCard'
-import VoteSection from '../Vote-Section'
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { fetchAnimeNews } from '../../Api';
+import AnimeCard from '../animeCard';
+import VoteSection from '../Vote-Section';
 
 const AnimeNews = () => {
-  const navigate = useNavigate()
+  const [news, setNews] = useState([]);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const getNews = async () => {
+      try {
+        const data = await fetchAnimeNews();
+        setNews(data.data);
+        console.log(data);
+      } catch (error) {
+        (error);
+      }
+    };
+
+    getNews();
+  }, []);
+
   const openBlogArticle = (index) => {
-    navigate(`/AnimeNew/${index}`, { state: { blog: dataNewSeason[index] } });
-};
-    const dataNewSeason = [{ animeImg: animeImgNew, animeName: 'Anime'}, { animeImg: animeImg, animeName: 'Anime'}]
-    const dataPopular = [{ animeImg: animeImg, animeName: 'Anime'}, { animeImg: animeImg, animeName: 'Anime'}]
-return (
-    <>
-<article className="flex-1 w-auto">
-  <section className='new-season-section py-10 px-10'>
-    <h1 className="text-text text-3xl font-bold ">Nueva Temporada</h1> 
-    <div id="card-list-container" className="p-6 w-auto flex gap-8">
-    {dataNewSeason.map((data, index) =>(
-    <AnimeCard 
-      key={index} 
-      animeImg={data.animeImg}
-      animeName={data.animeName} 
-      onClick={() => openBlogArticle(index)}
-      />
-    ))}
-    </div>
-  </section>
+    if (news && news[index]) {
+      navigate(`/AnimeNew/${index}`, { state: { blog: news[index] } });
+    } else {
+      console.error('Invalid index or news data.');
+    }
+  };
   
 
-  <section className="most-popular-section w-auto py-10 px-10  bg-gray-100">
-    <h1 className="text-text text-3xl font-bold ">Más Populares</h1> 
-    <div id="card-list-container" className="p-6 w-auto flex gap-8">
-    {dataPopular.map((data, index) =>(
-      <AnimeCard 
-        key={index}
-        animeImg={data.animeImg}
-        animeName={data.animeName}
-      />
-    ))}
-    </div>
-</section>
-<VoteSection/>
-</article>
-</>
-    )
-}
+  return (
+    <>
+      <article className="block flex-1 w-auto">
+        <section className="new-season-section py-10 px-10">
+          <h1 className="text-text text-3xl font-bold">Nueva Temporada</h1>
+          <div id="card-list-container" className="grid grid-cols-4 p-6 w-auto gap-6">
+            {news.map((data, index) => (
+              <AnimeCard
+                key={index}
+                animeImg={data.images.jpg.image_url}
+                animeName={data.title_english}
+                onClick={() => openBlogArticle(index)}
+              />
+            ))}
+          </div>
+        </section>
 
-export default AnimeNews
+        {/* Otras secciones como Más Populares, Noticias de Anime, etc. */}
+        <VoteSection />
+      </article>
+    </>
+  );
+};
+
+export default AnimeNews;

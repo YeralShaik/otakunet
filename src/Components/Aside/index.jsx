@@ -4,6 +4,7 @@ import imgRecomend from "../../../asset/Rectangle 3.png"
 
 
 const Aside = () => {
+  
   const dataCategories = [
     {genre: 'Acción'},
     {genre: 'Ciencia Ficción'},
@@ -22,7 +23,7 @@ const Aside = () => {
   ]
 return (
 <div className="flex flex-1 ">
-<aside className="bg-gray-200 p-10 w-64 py-10">
+<aside className="sm:hide bg-gray-200 p-10 w-64 py-10">
   <h2 className="text-2xl text-text font-bold mb-4">Categorías</h2>
   {dataCategories.map((data, index) => (
   <ul className="text-text text-lg" key={index}>

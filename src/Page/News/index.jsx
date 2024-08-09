@@ -1,4 +1,5 @@
 import newsImg from '../../../asset/3997.jpg'
+
 const News = () => {
     const newsData = [
         {
