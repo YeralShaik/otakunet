@@ -16,6 +16,13 @@ const apiUrlBase = 'https://api.jikan.moe/v4'
 
         export const fetchAnimeNews = async () => {
           return await apiFetchData(`seasons/now`);
+        }
+
+        export const fetchMostPopular = async () => {
+          return await apiFetchData(`top/anime`);
         };
         
+        export const fetchRecommendations = async () => {
+          return await apiFetchData(`recommendations/anime`);
+        };
 

@@ -3,10 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { fetchAnimeNews } from '../../Api';
 import AnimeCard from '../animeCard';
 import VoteSection from '../Vote-Section';
+import PopularAnime from '../PopularAnime';
+
+
+
 
 const AnimeNews = () => {
   const [news, setNews] = useState([]);
-
+  
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,6 +35,7 @@ const AnimeNews = () => {
     }
   };
   
+  
 
   return (
     <>
@@ -48,8 +53,7 @@ const AnimeNews = () => {
             ))}
           </div>
         </section>
-
-        {/* Otras secciones como Más Populares, Noticias de Anime, etc. */}
+<PopularAnime/>
         <VoteSection />
       </article>
     </>
